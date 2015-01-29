@@ -6,7 +6,7 @@
   ],
   "issues_url": "https://github.com/swizzley/puppet/issues",
   "license": "Free as in Beer",
-  "name": "swizzley-timecapsule",
+  "name": "swizzley88-timecapsule",
     "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -40,6 +40,6 @@
   ],
   "source": "https://github.com/swizzley/puppet/tree/master/modules/timecapsule",
   "summary": "Puppet module for an open time capsule / time machine backup server working with latest OSX Yosemite 10.10.2 for RHEL7, CentOS7 & Fedora 20 or newer.",
-  "tags": ["OSX", "Redhat", "RHEL", "CentOS", "Fedora", "Yosemite", "time_machine", "backup", "time_capsule", "avahi", "netatalk"],
+  "tags": ["OSX", "Redhat", "RHEL", "CentOS", "Fedora", "Yosemite", "time_machine", "backup", "time_capsule", "avahi", "netatalk", "swizzley", "swizzley88"],
   "version": "0.1.0"
 }
