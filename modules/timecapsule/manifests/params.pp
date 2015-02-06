@@ -9,7 +9,8 @@ class timecapsule::params (
   $avahi_ssh    = $::timecapsule::config::avahi_ssh,
   $afpd         = $::timecapsule::config::afpd,
   $package      = $::timecapsule::config::package,
-  $netatalk_url = $::timecapsule::config::netatalk_url) inherits timecapsule::config {
+  $netatalk_url = $::timecapsule::config::netatalk_url)
+  inherits timecapsule::config {
   $user = 'changeme'
   $password = 'FGuWhH516rsQg' #this equals "changeme" 
   $manage_user = false

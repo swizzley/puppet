@@ -20,7 +20,8 @@ class timecapsule (
   $manage_user  = $::timecapsule::params::manage_user,
   $manage_group = $::timecapsule::params::manage_group,
   $afpd         = $::timecapsule::params::afpd,
-  $netatalk_url = $::timecapsule::params::netatalk_url) inherits timecapsule::params {
+  $netatalk_url = $::timecapsule::params::netatalk_url)
+  inherits timecapsule::params {
   validate_bool($install_epel)
   validate_bool($firewall)
   validate_bool($bonjour_ssh)
