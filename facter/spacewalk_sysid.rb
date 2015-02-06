@@ -1,9 +1,9 @@
-# get_sysid.rb
+# changeme_sysid.rb
 # Example Output =
 # Management
 
 
-    Facter.add('get_sysid') do
+    Facter.add('changeme_sysid') do
       setcode do
         Facter::Core::Execution.exec("grep ID- /etc/sysconfig/rhn/systemid|cut -c 19-28")
       end
