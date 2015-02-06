@@ -6,6 +6,7 @@
 class timecapsule (
   $repo         = $::timecapsule::params::epel,
   $user         = $::timecapsule::params::user,
+  $pass         = $::timecapsule::params::password,
   $group        = $::timecapsule::params::group,
   $mount        = $::timecapsule::params::mount,
   $package      = $::timecapsule::params::package,
@@ -13,6 +14,7 @@ class timecapsule (
   $services     = $::timecapsule::params::services,
   $avahi_ssh    = $::timecapsule::params::avahi_ssh,
   $install_epel = $::timecapsule::params::use_epel,
+  $gpgcheck     = $::timecapsule::params::epel_gpgcheck,
   $firewall     = $::timecapsule::params::use_iptables,
   $bonjour_ssh  = $::timecapsule::params::enable_avahi_ssh,
   $manage_user  = $::timecapsule::params::manage_user,
@@ -24,21 +26,34 @@ class timecapsule (
   validate_bool($bonjour_ssh)
   validate_bool($manage_user)
   validate_bool($manage_group)
+  validate_bool($gpgcheck)
 
   if $install_epel {
     exec { 'install EPEL 7 repo':
       path    => '/usr/bin',
-      command => "yum install -y $repo",
+      command => "yum install -y ${repo}",
+      unless  => 'test -f /etc/yum.repos.d/epel.repo',
+    }
+
+    yumrepo { 'epel':
+      descr          => "Extra Packages for Enterprise Linux 7 - x86_64",
+      mirrorlist     => 'https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=x86_64',
+      baseurl        => 'http://download.fedoraproject.org/pub/epel/7/x86_64',
+      failovermethod => 'priority',
+      enabled        => true,
+      gpgcheck       => $gpgcheck,
+      gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7",
     }
   }
 
   if $::operatingsystem != 'Fedora' {
     exec { 'get netatalk package from rpmfind ftp':
       path    => '/usr/bin',
-      command => "yum install -y $netatalk_url",
+      command => "yum install -y ${netatalk_url}",
+      unless  => 'test -f /usr/sbin/afpd',
     }
   }
-  
+
   package { $package: ensure => installed } ->
   service { $services:
     ensure => 'running',
@@ -109,8 +124,9 @@ class timecapsule (
 
   if $manage_user {
     user { $user:
-      ensure => present,
-      gid    => $group
+      ensure   => present,
+      gid      => $group,
+      password => $pass,
     }
   }
 

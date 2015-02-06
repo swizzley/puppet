@@ -10,14 +10,16 @@ class timecapsule::params (
   $afpd         = $::timecapsule::config::afpd,
   $package      = $::timecapsule::config::package,
   $netatalk_url = $::timecapsule::config::netatalk_url) inherits timecapsule::config {
-  $user = 'change_me'
+  $user = 'changeme'
+  $password = 'FGuWhH516rsQg' #this equals "changeme" 
   $manage_user = false
-  $group = 'change_me'
+  $group = 'changeme'
   $manage_group = false
   $enable_avahi_ssh = false
   $mount = '/mnt/timecapsule'
   $use_iptables = true
-  $use_epel = false
-  $epel = 'http://www.mirrorservice.org/sites/dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm'
+  $use_epel = true
+  $epel = 'https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm'
+  $epel_gpgcheck = false
 
 }
