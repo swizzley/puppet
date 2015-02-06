@@ -1,30 +1,28 @@
 # timecapsule #
 
 **Table of Contents**
-
-- [timecapsule](#)
-		- [Overview](#)
-		- [Module Description](#)
-		- [Setup](#)
-				- [Presumptions](#)
-				- [Credentials](#)
-		- [Usage](#)
-				- [Server](#)
-				- [Client](#)
-				- [Considerations](#)
-		- [Troubleshooting](#)
-				- [selinux](#)
-				- [Mac](#)
-				- [Notes](#)
-		- [Requirements](#)
-		- [Compatibility](#)
-		- [Limitations](#)
-		- [TODO](#)
-			- [Changelog](#)
-				- [License](#)
-				- [Contact](#)
-				- [Development](#)
-
+- [timecapsule](#timecapsule)
+    - [Overview](#overview)
+    - [Module Description](#module-description)
+    - [Setup](#setup)
+    	- [Presumptions](#presumptions)
+    	- [Credentials](#credentials)
+    - [Usage](#usage)
+    	- [Server](#server)
+    	- [Client](#client)
+    	- [Considerations](#considerations)
+    - [Troubleshooting](#troubleshooting)
+    	- [selinux](#selinux)
+    	- [Mac](#mac)
+    	- [Notes](#notes)
+    - [Requirements](#requirements)
+    - [Compatibility](#compatibility)
+    - [Limitations](#limitations)
+    - [TODO](#todo)
+    - [Changelog](#changelog)
+    - [License](#license)
+    - [Contact](#contact)
+    - [Development](#development)
 
 ## Overview ##
 
@@ -221,4 +219,4 @@ Github: https://github.com/swizzley
 
 Any updates or contibutions are welcome.
 
-Report any issues with current release, as any input will be considered valuable. 
+Report any issues with current release, as any input will be considered valuable.
