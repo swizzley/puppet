@@ -21,7 +21,7 @@ Fedora 20
 
 ##### Tested On #####
 
-Server: Fedora 20 
+Server: Fedora 20, CentOS 7 
 
 Client: OSX 10.10.2 Yosemite
 

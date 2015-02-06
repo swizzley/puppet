@@ -16,7 +16,9 @@ class timecapsule (
   $firewall     = $::timecapsule::params::use_iptables,
   $bonjour_ssh  = $::timecapsule::params::enable_avahi_ssh,
   $manage_user  = $::timecapsule::params::manage_user,
-  $manage_group = $::timecapsule::params::manage_group,) inherits timecapsule::params {
+  $manage_group = $::timecapsule::params::manage_group,
+  $afpd         = $::timecapsule::params::afpd,
+  $netatalk_url = $::timecapsule::params::netatalk_url) inherits timecapsule::params {
   validate_bool($install_epel)
   validate_bool($firewall)
   validate_bool($bonjour_ssh)
@@ -24,9 +26,19 @@ class timecapsule (
   validate_bool($manage_group)
 
   if $install_epel {
-    exec { 'install EPEL 7 repo': command => 'yum install -y $repo', }
+    exec { 'install EPEL 7 repo':
+      path    => '/usr/bin',
+      command => "yum install -y $repo",
+    }
   }
 
+  if $::operatingsystem != 'Fedora' {
+    exec { 'get netatalk package from rpmfind ftp':
+      path    => '/usr/bin',
+      command => "yum install -y $netatalk_url",
+    }
+  }
+  
   package { $package: ensure => installed } ->
   service { $services:
     ensure => 'running',
@@ -45,7 +57,7 @@ class timecapsule (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => $::timecapsule::config::afpd,
+    content => $afpd,
     require => Package['netatalk'],
     notify  => Service['netatalk'],
   }
@@ -55,7 +67,7 @@ class timecapsule (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    source  => template('timecapsule/AppleVolumes.default.erb'),
+    content => template('timecapsule/AppleVolumes.default.erb'),
     require => Package['netatalk'],
     notify  => Service['netatalk'],
   }
@@ -65,12 +77,13 @@ class timecapsule (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    source  => template('timecapsule/afpd.service.erb'),
+    content => template('timecapsule/afpd.service.erb'),
     require => Package['avahi'],
     notify  => Service['avahi-daemon'],
   }
 
   exec { 'nsswitch switch':
+    path    => '/usr/bin',
     command => 'cp /etc/nsswitch.conf /etc/nsswitch.conf.pre-timecapsule && sed -i "/^hosts:/c\hosts:      files mdns4_minimal dns mdns mdns4" /etc/nsswitch.conf',
     unless  => 'test -f /etc/nsswitch.conf.pre-timecapsule',
   }
@@ -87,7 +100,7 @@ class timecapsule (
   }
 
   if $firewall {
-    firewall { 'enable time capsule':
+    firewall { '000 accept all timecapsule':
       port   => $ports,
       proto  => ['tcp', 'udp'],
       action => 'accept',
