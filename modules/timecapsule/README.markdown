@@ -2,36 +2,37 @@
 
 **Table of Contents**
 
-- [Overview](#)
-- [Module Description](#) 
-- [Setup](#)
-	- [Presumptions](#)
-	- [Credentials](#)
-- [Usage](#)
-	- [Server](#)
-	- [Client](#)
-	- [Other Considerations](#)
-- [Troubleshooting](#)
-	- [selinux](#)
-	- [Mac](#)
-	- [Notes](#)
-- [Requirements](#)
-- [Compatibility](#)
-- [Limitations](#)
-- [TODO](#)
-- [Changelog](#)
-- [License](#)
-- [Contact](#)
-- [Development](#)
+- [timecapsule](#)
+		- [Overview](#)
+		- [Module Description](#)
+		- [Setup](#)
+				- [Presumptions](#)
+				- [Credentials](#)
+		- [Usage](#)
+				- [Server](#)
+				- [Client](#)
+				- [Considerations](#)
+		- [Troubleshooting](#)
+				- [selinux](#)
+				- [Mac](#)
+				- [Notes](#)
+		- [Requirements](#)
+		- [Compatibility](#)
+		- [Limitations](#)
+		- [TODO](#)
+			- [Changelog](#)
+				- [License](#)
+				- [Contact](#)
+				- [Development](#)
 
 
-### Overview ###
+## Overview ##
 
 This is the timecapsule module. It provides an open-source "Time Capsule" to be
 used for OSX automated backups via the "Time Machine".
 
 
-### Module Description ###
+## Module Description ##
 
 The timemachine module turns your Redhat based system into a Time Machine server.
 It depends on netatalk 2.2.3 rpm which is included by in the fedora repo but not
@@ -39,9 +40,9 @@ in EPEL or BASE of RHEL/CentOS. Therefore an external mirror is used to download
 the package (netatalk-2.2.3-9.fc20) from www.rpmfind.net for CentOS/RHEL systems.
 
 
-### Setup ###
+## Setup ##
 
-##### Presumptions #####
+#### Presumptions ####
 
 The timemachine module requires layer 2 connectivity from your Mac to your time
 capsule server for announcements. Your timecapsule server will need to be able 
@@ -49,7 +50,7 @@ to access the web to download the required packages, and this module assumes
 you are not using a proxy, if you are, you will need to configure that manually.
 
 
-##### Credentials #####
+#### Credentials ####
 
 Even if $manage_user and $manage_group are set to false (defaut), you still need
 to set the $user and $group to a valid system user, with a valid password. In
@@ -68,14 +69,14 @@ class timecapsule::params{
 ```
 
 
-### Usage ###
+## Usage ##
 
-##### Server #####
+#### Server ####
 ```ruby
 include timecapsule
 ```
 
-##### Client #####
+#### Client ####
 
 From your Mac, open finder and you should see your server, click it and if the
 user you're logged in as doesn't exist on that server, or you specified a some
@@ -86,7 +87,7 @@ can simply open up Time Machine from the settings menu and flip it on, you will
 see the name of your timecapsule server and the disk icon, select it, and voila.
 
 
-##### Considerations #####
+#### Considerations ####
 
 If you use a spacewalk or satellite server for package management, or just plain
 don't want to enable the whole repo because you want to download and install the
@@ -108,15 +109,15 @@ class timecapsule::params{
 ```
 
 
-### Troubleshooting ###
+## Troubleshooting ##
 
-##### selinux #####
+#### selinux ####
 
 selinux was completely ignored, so maybe start there...
 `setenfoce 0`
 
 
-##### Mac #####
+#### Mac ####
 
 Close "settings" on your Mac and re-open it for Time Machine to rescan/listen. 
 
@@ -131,7 +132,7 @@ me, I had to bounce them a few times until they all stopped & started OK.
 ```
 
 
-##### Notes #####
+#### Notes ####
 
 Repeating this 2 to 3 times did the trick for me, after the module does its' 
 thing. This was only necessary for the initial setup, since then everything has
@@ -139,50 +140,50 @@ been online and totoally functional... I backed up 500GB over 802.11b in about
 5 days.  
 
 
-### Requirements ###
+## Requirements ##
 
 puppetlabs/stdlib >= 4.2.0 
 
 puppetlabs/firewall >= 1.1.3 
 
 
-### Compatibility ###
+## Compatibility ##
 
   * RHEL 7
   * CentOS 7
   * Fedora 20
 
 
-### Limitations ###
+## Limitations ##
 
 This module has been tested on:
 
-	Server: 
-	  - Fedora 20
-	  - CentOS 7 
-	
-	Client: 
-	  - OSX 10.10.2 (Yosemite)
+Server: 
+  - Fedora 20
+  - CentOS 7 
+
+Client: 
+  - OSX 10.10.2 (Yosemite)
 
 This module should work on:
 
-	Server: 
-	  - Fedora 21
-	  - CentOS 7.1
-	  - RHEL Server 7.x
-	  - RHEL Client 7.x
-	  - RHEL Workstation 7.x 
+Server: 
+  - Fedora 21
+  - CentOS 7.1
+  - RHEL Server 7.x
+  - RHEL Client 7.x
+  - RHEL Workstation 7.x 
 	
-	Client: 
-	  - OSX 10.10.x (Yosemite)
-	  - OSX 10.9.x  (Maverics)
-	  - OSX 10.8.x  (Mountain Lion)
-	  - OSX 10.7.x  (Lion)
-	  - OSX 10.6.x  (Snow Leopard)
-	  - OSX 10.5.x  (Leopard)
+Client: 
+  - OSX 10.10.x (Yosemite)
+  - OSX 10.9.x  (Maverics)
+  - OSX 10.8.x  (Mountain Lion)
+  - OSX 10.7.x  (Lion)
+  - OSX 10.6.x  (Snow Leopard)
+  - OSX 10.5.x  (Leopard)
 	 
 
-### TODO ###
+## TODO ##
 
   * Add support for Debian operating system family
   * Depricate download netatalk from rpmfind for CentOS/RHEL
@@ -191,7 +192,7 @@ This module should work on:
   * Add gpg key install for epel and enable gpgcheck by default
  
   
-#### Changelog ####
+## Changelog ##
 
 1.0.1 
   - wrapped vars in curlys
@@ -202,12 +203,12 @@ This module should work on:
   - added default password for $user 
 
 
-##### License #####
+## License ##
 
 Apache-2.0 License
 
 
-##### Contact #####
+## Contact ##
 
 Email:  morgan@aspendenver.org
 
@@ -216,7 +217,7 @@ WWW:    www.aspendenver.org
 Github: https://github.com/swizzley
 
 
-##### Development #####
+## Development ##
 
 Any updates or contibutions are welcome.
 
