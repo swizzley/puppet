@@ -42,7 +42,7 @@ class timecapsule (
       failovermethod => 'priority',
       enabled        => true,
       gpgcheck       => $gpgcheck,
-      gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7",
+      gpgkey         => "file:///etc/pki/rpm-gpg/",
     }
   }
 

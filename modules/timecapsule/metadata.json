@@ -40,6 +40,6 @@
   ],
   "source": "https://github.com/swizzley/puppet/tree/master/modules/timecapsule",
   "summary": "Puppet module for an open time capsule / time machine backup server working with latest Mac OSX Yosemite client for EL7, Fedora 20.",
-  "tags": ["OSX", "RHEL", "CentOS", "Fedora", "backup", "timecapsule"],
+  "tags": ["osx", "rhel", "centos", "fedora", "backup", "timecapsule"],
   "version": "1.0.1"
 }
