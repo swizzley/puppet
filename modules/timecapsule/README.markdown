@@ -156,6 +156,7 @@ puppetlabs/firewall >= 1.1.3
 ### Limitations ###
 
 This module has been tested on:
+
 	Server: 
 	  - Fedora 20
 	  - CentOS 7 
@@ -164,6 +165,7 @@ This module has been tested on:
 	  - OSX 10.10.2 (Yosemite)
 
 This module should work on:
+
 	Server: 
 	  - Fedora 21
 	  - CentOS 7.1
