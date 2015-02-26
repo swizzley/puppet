@@ -1,6 +1,7 @@
 # timecapsule #
 
 **Table of Contents**
+
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup](#setup)
@@ -103,10 +104,12 @@ If you are connecting through finder, but Time Machine still doesn't find your s
 
 #### Notes ####
 
-Your mounts to the time capsule will drop if your Mac goes to sleep, which can cause backup failures. I reccomend a couple of things to combat this issue. 
+Your mounts to the time capsule will drop if your Mac goes to sleep, which can cause backup failures. I reccomend a couple of things to combat this issue.
+
 1. By installing caffeine. Linked here: https://itunes.apple.com/us/app/caffeine/id411246225?mt=12#
 2. Ensure $mount is not a symlink, but an actual mount point with enough space to backup to, because puppet will ensure it is a directory. 
 3. If you intend to use a remote mount point, I advise you add the mount parameters to init.pp first, and `ensure => mounted`
+
 
 ## Requirements ##
 
