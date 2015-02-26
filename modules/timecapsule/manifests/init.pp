@@ -1,6 +1,21 @@
 # Class: timecapsule
 #
-# This module manages timecapsule
+# This module manages timecapsule, it is designed to turn a rhel like OS into
+# a fully functional Mac OSX Time Capsule to be used with the built in backup
+# application "Time Machine" and it relies on the netatalk package for POSIX
+# translation of afp, (Apple File Protocol) along with avahi and mdns for easy
+# always on configuration. It is tested and functional on CentOS7 & Fedora 20
+# using the latest Mac OSX Yosemite build 10.10.2 and is free to distribute.
+#
+# License: Apache-2.0 License
+#
+# Author: Dustin Morgan <morgan@aspendenver.org>
+#
+# @example include timecapsule
+# @param user
+# @param pass
+# @param group
+# @param mount
 #
 
 class timecapsule (
@@ -20,8 +35,7 @@ class timecapsule (
   $manage_user  = $::timecapsule::params::manage_user,
   $manage_group = $::timecapsule::params::manage_group,
   $afpd         = $::timecapsule::params::afpd,
-  $netatalk_url = $::timecapsule::params::netatalk_url)
-  inherits timecapsule::params {
+  $netatalk_url = $::timecapsule::params::netatalk_url) inherits timecapsule::params {
   validate_bool($install_epel)
   validate_bool($firewall)
   validate_bool($bonjour_ssh)
@@ -44,6 +58,14 @@ class timecapsule (
       enabled        => true,
       gpgcheck       => $gpgcheck,
       gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7',
+    }
+
+    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7':
+      ensure => present,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      source => 'puppet:///modules/timecapsule/RPM-GPG-KEY-EPEL-7',
     }
   }
 
