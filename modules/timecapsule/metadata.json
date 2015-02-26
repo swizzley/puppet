@@ -25,7 +25,7 @@
 			]
 		}
 	],
-	"project_page": "https://github.com/swizzley/puppet/tree/master/modules/timecapsule",
+	"project_page": "https://github.com/swizzley/swizzley88-timecapsule",
 	"requirements": [{
 			"name": "pe",
 			"version_requirement": ">= 3.3.0 < 4.0.0"
@@ -34,7 +34,7 @@
 			"version_requirement": ">= 3.0.0 < 4.0.0"
 		}
 	],
-	"source": "https://github.com/swizzley/puppet/tree/master/modules/timecapsule",
+	"source": "https://github.com/swizzley/swizzley88-timecapsule",
 	"summary": "Puppet module for an open time capsule / time machine backup server working with latest Mac OSX Yosemite client for EL7, Fedora 20.",
 	"tags": [ "timemachine",
 		"mac",
